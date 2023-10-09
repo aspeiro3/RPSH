@@ -1,0 +1,27 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  host: postgres
+  port: 5432
+
+test:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME") { 'api' } %>_test
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME") { 'api' } %>_development
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+staging:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME") { 'api' } %>_staging
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 10 } %>
+
+production:
+  <<: *default
+  database: <%= ENV.fetch("DB_NAME") { 'api' } %>_production
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 40 } %>

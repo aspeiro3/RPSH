@@ -1,0 +1,32 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "scripts": {
+    "up": "docker-compose up",
+    "stop": "docker-compose stop",
+    "down": "docker-compose down",
+    "docker:status": "docker-compose ps",
+    "bash": "docker-compose exec backend bash",
+    "c": "docker-compose exec backend rails c",
+    "docker:exec": "docker-compose exec backend",
+    "annotate": "docker-compose exec backend annotate",
+    "build": "yarn clean && docker-compose up --build",
+    "audit": "docker-compose exec backend bundle-audit",
+    "routes": "docker-compose exec backend rails routes",
+    "db:seed": "docker-compose exec backend rails db:seed",
+    "db:reset": "docker-compose exec backend rails db:reset",
+    "db:migrate": "docker-compose exec backend rails db:migrate",
+    "db:rollback": "docker-compose exec backend rails db:rollback",
+    "g:migration": "docker-compose exec backend rails g migration",
+    "rspec": "docker-compose exec -e RAILS_ENV=test backend rspec",
+    "rubocop": "docker-compose exec -e RAILS_ENV=test backend rubocop",
+    "brakeman": "docker-compose exec -e RAILS_ENV=test backend brakeman",
+    "linters": "yarn rspec:quick && yarn rubocop && yarn audit && yarn brakeman",
+    "rspec:quick": "docker-compose exec -e RAILS_ENV=test backend rake parallel:spec",
+    "docs": "docker-compose exec -e SWAGGER_DRY_RUN=0 -e RAILS_ENV=test backend rails rswag",
+    "clean": "if [ -d tmp/storage ]; then rm -r tmp/storage; fi && cd log && for file in *; do echo '' > $file; done || echo 'please run: sudo chmod 777 -R log'"
+  },
+  "dependencies": {
+    "active_material": "^2.0.0"
+  }
+}

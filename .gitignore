@@ -1,0 +1,42 @@
+/.bundle
+# Ignore all logfiles and tempfiles.
+.idea/*
+/log/*
+/tmp/*
+# Ignore uploaded files in development
+/storage/*
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/node_modules
+/yarn-error.log
+.byebug_history
+.ruby-version
+.ruby-gemset
+coverage/
+public/system/*
+public/uploads/*
+public/sitemap.xml.gz
+public/sitemap.xml
+.env
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/doc/*
+
+.DS_Store
+
+/config/credentials/test.key
+/config/credentials/development.key
+/config/credentials/staging.key
+/config/credentials/preprod.key
+/config/credentials/production.key
+/config/credentials/quantity.key
+
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+
+swagger
