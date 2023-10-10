@@ -12,12 +12,36 @@ class Game
 
   def call
     with_contract(::GameContract.new, params) do |attributes|
-      {
-        user_choice: attributes[:user_choice],
-        api_choice: attributes[:user_choice],
-        result: 'game_draw'
-      }
+      if attributes[:user_choice].eql?('hammer')
+        game_result(attributes[:user_choice], DEFAULT_VALUES.sample).response
+      else
+        make_api_throw(attributes[:user_choice]).response
+      end
     end
+  end
+
+  private
+
+  def game_result(user_choice, api_choice)
+    GameResult.find_by(user_choice: user_choice, api_choice: api_choice)
+  end
+
+  def make_api_throw(user_choice)
+    api_response_handler(user_choice)
+  rescue StandardError
+    game_result(user_choice, DEFAULT_VALUES.sample)
+  end
+
+  def api_response_handler(user_choice)
+    if api_response.status.eql?(200)
+      game_result(user_choice, JSON.parse(api_response.body)['body'])
+    else
+      game_result(user_choice, DEFAULT_VALUES.sample)
+    end
+  end
+
+  def api_response
+    @api_response ||= Faraday.get('https://5eddt4q9dk.execute-api.us-east-1.amazonaws.com/rps-stage/throw')
   end
 
 end

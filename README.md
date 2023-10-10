@@ -9,8 +9,11 @@ To engage in the game, simply make a GET request and include the user's choice (
 The service will respond with success or error:
 
 * Success:
+
 `user_choice` - The value provided in the request parameter.
+
 `api_choice` - The server's random selection.
+
 `result` - The outcome of the game (user_won, user_lost, or game_draw).
 
 Example response:
@@ -23,6 +26,7 @@ Example response:
 ```
 
 * Error:
+
 In case of an error, the response will include error details.
 
 Example response:
@@ -49,7 +53,6 @@ Example response:
 * API mode
 * Postgres
 * Puma
-* Handling CORS
 * RSpec testing framework
 * Redis
 * Sidekiq

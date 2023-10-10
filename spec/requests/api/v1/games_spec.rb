@@ -1,7 +1,20 @@
 require 'swagger_helper'
 
 RSpec.describe '/api/v1/game' do
-  let(:game_result) { create(:game_result) }
+  before do
+    JSON.parse(File.read('lib/data/selection_combinations.json')).each do |data|
+      create(
+        :game_result,
+        user_choice: data['user_choice'],
+        api_choice: data['api_choice'],
+        response: {
+          user_choice: data['user_choice'],
+          api_choice: data['api_choice'],
+          result: data['result']
+        }
+      )
+    end
+  end
 
   path '/api/v1/game' do
     get 'Get Game Result' do
