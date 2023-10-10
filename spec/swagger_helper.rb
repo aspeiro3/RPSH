@@ -25,7 +25,7 @@ RSpec.configure do |config|
           url: 'http://{defaultHost}',
           variables: {
             defaultHost: {
-              default: Rails.application.credentials.backend_api_url
+              default: 'localhost:3000'
             }
           }
         },
@@ -33,7 +33,7 @@ RSpec.configure do |config|
           url: 'https://{defaultHost}',
           variables: {
             defaultHost: {
-              default: Rails.application.credentials.backend_api_url
+              default: 'localhost:3000'
             }
           }
         }

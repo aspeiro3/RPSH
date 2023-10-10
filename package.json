@@ -21,8 +21,7 @@
     "rspec": "docker-compose exec -e RAILS_ENV=test backend rspec",
     "rubocop": "docker-compose exec -e RAILS_ENV=test backend rubocop",
     "brakeman": "docker-compose exec -e RAILS_ENV=test backend brakeman",
-    "linters": "yarn rspec:quick && yarn rubocop && yarn audit && yarn brakeman",
-    "rspec:quick": "docker-compose exec -e RAILS_ENV=test backend rake parallel:spec",
+    "linters": "yarn rubocop && yarn audit && yarn brakeman",
     "docs": "docker-compose exec -e SWAGGER_DRY_RUN=0 -e RAILS_ENV=test backend rails rswag",
     "clean": "if [ -d tmp/storage ]; then rm -r tmp/storage; fi && cd log && for file in *; do echo '' > $file; done || echo 'please run: sudo chmod 777 -R log'"
   },

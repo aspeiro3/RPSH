@@ -1,4 +1,23 @@
-# API name
+# Game 'Rock-Paper-Scissors-Hammer'
+
+This is a public API for the 'Rock-Paper-Scissors' game with the added feature of choosing 'Hammer'.
+To play the game, make a GET request and pass the user's choice (rock, paper, scissors, or hammer) as a query parameter.
+
+`GET '<url>/api/v1/game?user_choice=paper'` - local URL 'http://localhost:3000'
+
+In response, the service will return three values:
+* user_choice - the value passed in the request parameter
+* api_choice - the server's random choice
+* result - the result of the game (user_won, user_lost, or game_draw)
+
+Example response:
+```json
+{
+  'user_choice': 'paper',
+  'api_choice': 'rock',
+  'result': 'user_won'
+}
+```
 
 ## Stack & Features
 
@@ -15,12 +34,19 @@
 
 ## Getting Started
 
+Clone project
 ```bash
 git clone git@github.com:aspeiro3/RPSH.git
 ```
 
+Build a project
 ```bash
 docker-compose up --build
+```
+
+Add data from `credentials.example.yml` to the `credentials.yml.enc` file.
+```bash
+docker-compose run --rm backend rails credentials:edit
 ```
 
 ## Links
@@ -69,15 +95,13 @@ docker-compose up --build
 
 `yarn rspec` - run Rspec
 
-`yarn rspec:quick` - run parallel Rspec
-
 `yarn rubocop` - run Rubocop (you can use `-a` option to fix some issues)
 
 `yarn audit` - run bundle-audit
 
 `yarn brakeman` - run Brakeman
 
-`yarn linters` - run all tests (parallel rspec, rubocop, audit, brakeman)
+`yarn linters` - run all tests (rubocop, audit, brakeman)
 
 ## Credentials
 
