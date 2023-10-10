@@ -1,1 +1,4 @@
 ---
+en:
+  errors:
+    invalid_request: Invalid request

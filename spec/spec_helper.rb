@@ -28,6 +28,29 @@ RSpec.configure do |config|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
   end
 
+  # Add VCR to all tests
+  config.around do |example|
+    vcr_tag = example.metadata[:vcr]
+
+    if vcr_tag == false
+      VCR.turned_off(&example)
+    else
+      options = vcr_tag.is_a?(Hash) ? vcr_tag : {}
+      path_data = [example.metadata[:description]]
+      parent = example.example_group
+      while parent != RSpec::ExampleGroups
+        path_data << parent.metadata[:description]
+        # Newer versions of rspec may require you to use module_parent instead
+        parent = parent.module_parent
+        # parent = parent.parent
+      end
+
+      name = path_data.map { |str| str.underscore.delete('.').gsub(%r{[^\w/]+}, '_').gsub(%r{/$}, '') }.reverse.join('/')
+
+      VCR.use_cassette(name, options, &example)
+    end
+  end
+
   # rspec-mocks config goes here. You can use an alternate test double
   # library (such as bogus or mocha) by changing the `mock_with` option here.
   config.mock_with :rspec do |mocks|

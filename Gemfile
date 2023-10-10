@@ -19,7 +19,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Use Active Model has_secure_password
-gem 'bcrypt', '~> 3.1', '>= 3.1.18'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
@@ -37,6 +37,13 @@ gem 'simple_command'
 gem 'rswag-api'
 gem 'rswag-ui'
 
+# dry-rb is a collection of next-generation Ruby libraries
+gem 'dry-struct'
+gem 'dry-validation'
+
+# A lightning fast JSON:API serializer for Ruby Objects
+gem 'jsonapi-serializer'
+
 group :development do
   gem 'listen', '~> 3.3'
 
@@ -46,7 +53,11 @@ group :development do
   # A static analysis security vulnerability scanner for Ruby on Rails applications
   gem 'brakeman'
 
+  # Patch-level verification for bundler.
+  gem 'bundle-audit'
+
   # Show emails for development mode http://localhost:3000/letter_opener
+  gem 'letter_opener'
   gem 'letter_opener_web', '~> 2.0'
 
   # Add a comment summarizing the current schema to the top of file
@@ -84,6 +95,9 @@ group :development, :test do
 
   # Library for stubbing and setting expectations on HTTP requests in Ruby
   gem 'webmock'
+
+  # Record test suite's HTTP interactions and replay them during future test runs
+  gem 'vcr'
 
   # A Ruby gem to load environment variables from `.env`
   gem 'dotenv-rails'

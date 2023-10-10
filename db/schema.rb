@@ -10,8 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_131144) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "game_results", force: :cascade do |t|
+    t.string "user_choice"
+    t.string "api_choice"
+    t.jsonb "response", default: {}
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["api_choice"], name: "index_game_results_on_api_choice", using: :hash
+    t.index ["user_choice"], name: "index_game_results_on_user_choice", using: :hash
+  end
 
 end

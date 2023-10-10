@@ -12,21 +12,16 @@ require 'webmock/rspec'
 require 'sidekiq/testing'
 require 'support/database_cleaner'
 require 'support/helpers'
+require 'vcr'
 
-WebMock.disable_net_connect!(allow_localhost: true)
+# WebMock.disable_net_connect!(allow_localhost: true)
+
+VCR.configure do |config|
+  config.cassette_library_dir = 'spec/vcr'
+  config.hook_into :webmock
+end
 
 Sidekiq::Testing.inline!
-
-RspecApiDocumentation.configure do |config|
-  config.docs_dir                    = Rails.root.join('doc/api')
-  config.format                      = :open_api
-  config.request_body_formatter      = :json
-  config.response_body_formatter     = proc { |_response_content_type, response_body| response_body }
-  config.api_name                    = 'API'
-  config.request_headers_to_include  = %w[Host Content-Type Authorization]
-  config.response_headers_to_include = %w[Host Content-Type Authorization]
-  config.keep_source_order           = true
-end
 
 DatabaseCleaner.strategy = :deletion
 
