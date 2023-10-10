@@ -44,6 +44,9 @@ gem 'dry-validation'
 # A lightning fast JSON:API serializer for Ruby Objects
 gem 'jsonapi-serializer'
 
+# Additional library to support redirects
+gem 'faraday-follow_redirects'
+
 group :development do
   gem 'listen', '~> 3.3'
 
