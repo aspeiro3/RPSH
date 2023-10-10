@@ -1,14 +1,17 @@
 # Game 'Rock-Paper-Scissors-Hammer'
 
-This is a public API for the 'Rock-Paper-Scissors' game with the added feature of choosing 'Hammer'.
-To play the game, make a GET request and pass the user's choice (rock, paper, scissors, or hammer) as a query parameter.
+Welcome to the public API for the 'Rock-Paper-Scissors' game, now featuring the exciting addition of 'Hammer'!
+
+To engage in the game, simply make a GET request and include the user's choice (rock, paper, scissors, or hammer) as a query parameter.
 
 `GET '<url>/api/v1/game?user_choice=paper'` - local URL 'http://localhost:3000'
 
-In response, the service will return three values:
-* user_choice - the value passed in the request parameter
-* api_choice - the server's random choice
-* result - the result of the game (user_won, user_lost, or game_draw)
+The service will respond with success or error:
+
+* Success:
+`user_choice` - The value provided in the request parameter.
+`api_choice` - The server's random selection.
+`result` - The outcome of the game (user_won, user_lost, or game_draw).
 
 Example response:
 ```json
@@ -18,6 +21,26 @@ Example response:
   'result': 'user_won'
 }
 ```
+
+* Error:
+In case of an error, the response will include error details.
+
+Example response:
+```json
+{
+  'errors': {
+    'base': 'Some Error'
+  }
+}
+```
+
+## Description of the rules of the game:
+
+* Rock wins against scissors but loses to paper and hammer.
+* Paper wins against rock and hammer but loses to scissors.
+* Scissors win against paper and hammer but lose to rock.
+* Hammer wins against rock but loses to paper and scissors.
+* A draw occurs if both the user's choice and the API's choice are the same.
 
 ## Stack & Features
 
@@ -55,7 +78,6 @@ docker-compose run --rm backend rails credentials:edit
 |-------------------|-------------------------------------------|
 | API (rails)       | http://localhost:3000                     |
 | API Documentation | http://localhost:3000/api-docs/index.html |
-| Show emails       | http://localhost:3000/letter_opener       |
 
 ## Commands
 

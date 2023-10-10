@@ -1,0 +1,21 @@
+[
+  { "user_choice": "rock", "api_choice": "scissors", "result": "user_won" },
+  { "user_choice": "rock", "api_choice": "paper", "result": "user_lost" },
+  { "user_choice": "rock", "api_choice": "hammer", "result": "user_lost" },
+  { "user_choice": "rock", "api_choice": "rock", "result": "game_draw" },
+
+  { "user_choice": "paper", "api_choice": "rock", "result": "user_won" },
+  { "user_choice": "paper", "api_choice": "hammer", "result": "user_won" },
+  { "user_choice": "paper", "api_choice": "scissors", "result": "user_lost" },
+  { "user_choice": "paper", "api_choice": "paper", "result": "game_draw" },
+
+  { "user_choice": "scissors", "api_choice": "paper", "result": "user_won" },
+  { "user_choice": "scissors", "api_choice": "hammer", "result": "user_won" },
+  { "user_choice": "scissors", "api_choice": "rock", "result": "user_lost" },
+  { "user_choice": "scissors", "api_choice": "scissors", "result": "game_draw" },
+
+  { "user_choice": "hammer", "api_choice": "rock", "result": "user_won" },
+  { "user_choice": "hammer", "api_choice": "paper", "result": "user_lost" },
+  { "user_choice": "hammer", "api_choice": "scissors", "result": "user_lost" },
+  { "user_choice": "hammer", "api_choice": "hammer", "result": "game_draw" }
+]

@@ -1,29 +1,40 @@
-# Offense count: 3
-# Configuration parameters: CountComments, Max, CountAsOne, ExcludedMethods, IgnoredMethods.
-# IgnoredMethods: refine
 Metrics/BlockLength:
+  Max: 30
   Exclude:
     - 'config/environments/*.rb'
     - 'lib/tasks/auto_annotate_models.rake'
     - 'spec/swagger_helper.rb'
+    - 'spec/**/*.rb'
 
-# Offense count: 1
-# Configuration parameters: ExpectMatchingDefinition, CheckDefinitionPathHierarchy, Regex, IgnoreExecutableScripts, AllowedAcronyms.
-# AllowedAcronyms: CLI, DSL, ACL, API, ASCII, CPU, CSS, DNS, EOF, GUID, HTML, HTTP, HTTPS, ID, IP, JSON, LHS, QPS, RAM, RHS, RPC, SLA, SMTP, SQL, SSH, TCP, TLS, TTL, UDP, UI, UID, UUID, URI, URL, UTF8, VM, XML, XMPP, XSRF, XSS
 Naming/FileName:
   Exclude:
     - 'config/initializers/rswag-ui.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
 Style/StringConcatenation:
   Exclude:
     - 'config/initializers/rswag_api.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: AutoCorrect, Max, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
-# URISchemes: http, https
 Layout/LineLength:
+  Max: 140
   Exclude:
     - 'config/routes.rb'
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 10
+
+RSpec/EmptyExampleGroup:
+  Exclude:
+    - 'spec/requests/api/**/*.rb'
+
+Style/SymbolProc:
+  Exclude:
+    - 'app/serializers/**/*.rb'
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'app/contracts/application_contract.rb'
+
+Rails/Output:
+  Exclude:
+    - 'db/seeds.rb'
+    - 'db/seeds/*.rb'
