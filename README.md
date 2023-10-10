@@ -75,6 +75,11 @@ Add data from `credentials.example.yml` to the `credentials.yml.enc` file.
 docker-compose run --rm backend rails credentials:edit
 ```
 
+Creating API Documentation
+```bash
+docker-compose exec -e SWAGGER_DRY_RUN=0 -e RAILS_ENV=test backend rails rswag
+```
+
 ## Links
 
 | Name              | Link                                      |
