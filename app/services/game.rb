@@ -12,27 +12,27 @@ class Game
 
   def call
     with_contract(::GameContract.new, params) do |attributes|
-      if attributes[:user_choice].eql?('hammer')
-        game_result(attributes[:user_choice], DEFAULT_VALUES.sample).response
-      else
-        make_api_throw(attributes[:user_choice]).response
-      end
+      prepare_response(attributes[:user_choice])
+    rescue StandardError
+      game_result(attributes[:user_choice], DEFAULT_VALUES.sample).response
     end
   end
 
   private
+
+  def prepare_response(user_choice)
+    if user_choice.eql?('hammer')
+      game_result(user_choice, DEFAULT_VALUES.sample).response
+    else
+      make_api_throw(user_choice).response
+    end
+  end
 
   def game_result(user_choice, api_choice)
     GameResult.find_by(user_choice: user_choice, api_choice: api_choice)
   end
 
   def make_api_throw(user_choice)
-    api_response_handler(user_choice)
-  rescue StandardError
-    game_result(user_choice, DEFAULT_VALUES.sample)
-  end
-
-  def api_response_handler(user_choice)
     if api_response.status.eql?(200)
       game_result(user_choice, JSON.parse(api_response.body)['body'])
     else
